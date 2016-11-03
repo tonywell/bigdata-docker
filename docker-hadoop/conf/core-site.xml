@@ -1,0 +1,25 @@
+<configuration>        
+    <property>
+        <name>fs.default.name</name>
+        <value>hdfs://hadoop-master:54310</value>
+    </property>
+    <property>
+      <name>fs.trash.interval</name>
+      <value>3600</value>
+    </property>
+    
+    <property>
+      <name>ha.failover-controller.active-standby-elector.zk.op.retries</name>
+      <value>120</value>
+    </property>
+    
+    <property>
+      <name>ha.zookeeper.quorum</name>
+      <value>zk1:2181,zk2:2181,zk3:2181,zk4:2181,zk5:2181</value>
+    </property>
+    
+    <property>
+      <name>hadoop.http.authentication.simple.anonymous.allowed</name>
+      <value>true</value>
+    </property>
+</configuration>

@@ -1,0 +1,65 @@
+zoo1:
+   image: tonywell/docker-zk
+   restart: always
+   net: zoo
+   container_name: zk1
+   volumes:
+      - ./docker-zk/zoo1:/opt/data
+      - ./docker-zk/conf:/opt/zookeeper/conf
+   ports:
+      - "2181:2181"
+   expose:
+      - "2888"
+      - "3888"
+zoo2:
+   image: tonywell/docker-zk
+   restart: always
+   net: zoo
+   container_name: zk2
+   volumes:
+      - ./docker-zk/zoo2:/opt/data 
+      - ./docker-zk/conf:/opt/zookeeper/conf
+   ports:
+      - "2182:2181"
+   expose:
+      - "2888"
+      - "3888"
+zoo3:
+   image: tonywell/docker-zk
+   restart: always
+   container_name: zk3
+   net: zoo
+   volumes:
+      - ./docker-zk/zoo3:/opt/data
+      - ./docker-zk/conf:/opt/zookeeper/conf
+   ports:
+      - "2183:2181"
+   expose:
+      - "2888"
+      - "3888"
+zoo4:
+   image: tonywell/docker-zk
+   restart: always
+   container_name: zk4
+   net: zoo
+   volumes:
+      - ./docker-zk/zoo4:/opt/data
+      - ./docker-zk/conf:/opt/zookeeper/conf
+   ports:
+      - "2184:2181"
+   expose:
+      - "2888"
+      - "3888"
+zoo5:
+   image: tonywell/docker-zk
+   restart: always
+   container_name: zk5
+   net: zoo
+   volumes:
+      - ./docker-zk/zoo5:/opt/data
+      - ./docker-zk/conf:/opt/zookeeper/conf
+   ports:
+      - "2185:2181"
+   expose:
+      - "2888"
+      - "3888"
