@@ -34,7 +34,7 @@ hadoop-master:
      - ./docker-spark/conf:/usr/local/spark/conf
      - ./docker-hbase/conf:/usr/local/hbase/conf
    net: zoo
-   command: /usr/local/hadoop/bin/hdfs namenode -format && sh /usr/local/hadoop/sbin/start-all.sh && sh /usr/local/spark/sbin/start-all.sh && sh /usr/local/hbase/bin/start-hbase.sh
+   #command: bash /usr/local/hadoop/bin/hdfs namenode -format -y && sh /usr/local/hadoop/sbin/start-all.sh -yes && sh /usr/local/spark/sbin/start-all.sh && sh /usr/local/hbase/bin/start-hbase.sh && ping localhost > /dev/null
    ports:
      - "50070:50070"
      - "9083:9083"

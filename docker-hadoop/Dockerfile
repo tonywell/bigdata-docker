@@ -4,8 +4,10 @@ MAINTAINER tonywell
 RUN yum -y install which && yum clean all
 
 #下载Hadoop
-RUN curl -s http://www.eu.apache.org/dist/hadoop/common/hadoop-2.7.1/hadoop-2.7.1.tar.gz | tar -xz -C /usr/local/
-RUN cd /usr/local && ln -s ./hadoop-2.7.1 hadoop
+RUN wget http://www.eu.apache.org/dist/hadoop/common/hadoop-2.7.1/hadoop-2.7.1.tar.gz && \
+        tar -zvxf hadoop-2.7.1.tar.gz -C /usr/local/ && \
+        mv /usr/local/hadoop-2.7.1 /usr/local/hadoop && \
+        rm -rf hadoop-2.7.1.tar.gz
 
 ENV HADOOP_HOME /usr/local/hadoop
 ENV HADOOP_PREFIX /usr/local/hadoop
@@ -17,6 +19,3 @@ ENV HADOOP_CONF_DIR /usr/local/hadoop/etc/hadoop
 ENV YARN_CONF_DIR $HADOOP_PREFIX/etc/hadoop
 
 ENV PATH $HADOOP_HOME/bin:$PATH
-
-RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
