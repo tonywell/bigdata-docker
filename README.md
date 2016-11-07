@@ -55,14 +55,14 @@ $ docker-compose -f docker-compose-zk.yml up -d
 如何仅仅想使用hadoop集群的，可省略此步。
 
 ```
-$ docker-compose -f docker-compose-mysql-yml up -d
+$ docker-compose -f docker-compose-mysql.yml up -d
 ```
 
 然后就要修改密码和配置远程访问mysql了
 
 ```
 $ docker exec -it hadoop-mysql bash
-$ cd /user/local/mysql-5.6.29/bin
+$ cd /usr/local/mysql-5.6.29/bin
 $ ./mysql -u root -p
 #默认密码为空，回车即可
 $ mysql> use mysql;
@@ -128,6 +128,28 @@ $ docker-compose -f docker-compose-spark.yml up -d
 ```
 $ sh /usr/local/spark/sbin/start-all.sh
 ```
+
+使用 spark 自带样例中的计算 Pi 的应用来验证一下
+
+```
+/usr/local/spark/bin/spark-submit --master spark://hadoop-master:7077 --class org.apache.spark.examples.SparkPi /usr/local/spark/lib/spark-examples-1.6.2-hadoop2.2.0.jar 1000
+```
+
+计算结果输出如下
+
+```
+starting org.apache.spark.deploy.master.Master, logging to /usr/local/spark/logs/spark--org.apache.spark.deploy.master.Master-1-1bdfd98bccc7.out
+hadoop-slave2: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark/logs/spark-root-org.apache.spark.deploy.worker.Worker-1-9dd7e2ebbf13.out
+hadoop-slave3: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark/logs/spark-root-org.apache.spark.deploy.worker.Worker-1-97a87730dd03.out
+hadoop-slave1: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/spark/logs/spark-root-org.apache.spark.deploy.worker.Worker-1-adb07707f15b.out
+<k/bin/spark-submit --master spark://hadoop-master:7077 --class org.apache.spark.examples.SparkPi /usr/local/spark/li
+lib/      licenses/
+<.examples.SparkPi /usr/local/spark/lib/spark-examples-1.6.2-hadoop2.2.0.jar 1000
+16/11/07 08:19:46 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Pi is roughly 3.1417756
+```
+
+
 
 ##### d）启动Hbase集群
 
